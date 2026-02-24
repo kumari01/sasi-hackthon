@@ -25,14 +25,10 @@ const router = express.Router();
  * AUTH ROUTES
  */
 
-
-
-
 router.post("/register", (req, res, next) => {
   console.log("REGISTER ROUTE HIT");
   next();
 }, validateRegister, checkDuplicateUser, registerUser);
-
 
 
 // LOGIN
