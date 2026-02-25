@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const otpSchema = new mongoose.Schema(
+const otpSchemaDept = new mongoose.Schema(
   {
     // 🔑 OWNER (USER / ADMIN / ANY ROLE)
     user_id: {
@@ -30,6 +30,6 @@ const otpSchema = new mongoose.Schema(
 );
 
 // 🔥 TTL INDEX
-otpSchema.index({ expires_at: 1 }, { expireAfterSeconds: 0 });
+otpSchemaDept.index({ expires_at: 1 }, { expireAfterSeconds: 0 });
 
-export default mongoose.model("OTPVerification", otpSchema);
+export default mongoose.model("OTPVerification", otpSchemaDept);
