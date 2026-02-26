@@ -58,6 +58,11 @@ const departmentAdminSchema = new mongoose.Schema(
       default: false
     },
 
+    is_officer_verified: {
+      type: Boolean,
+      default: false
+    },
+
     is_verified: {
       type: Boolean,
       default: false
