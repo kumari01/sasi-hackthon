@@ -1,35 +1,34 @@
 import mongoose from "mongoose";
 
-const otpSchemaDept = new mongoose.Schema(
-  {
-    // 🔑 OWNER (USER / ADMIN / ANY ROLE)
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true
-    },
-
-    otp: {
-      type: String,
-      required: true,
-      minlength: 6,
-      maxlength: 6
-    },
-
-    otp_type: {
-      type: String,
-      enum: ["PHONE", "EMAIL", "RESET"],
-      required: true
-    },
-
-    expires_at: {
-      type: Date,
-      required: true
-    }
+const otpSchema = new mongoose.Schema({
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   },
-  { timestamps: true }
-);
+
+  otp: {
+    type: String,
+    required: true,
+    minlength: 6,
+    maxlength: 6
+  },
+  otp_type: {
+  type: String,
+  enum: ["PHONE", "EMAIL","RESET"],
+  required: true
+},
+
+  expires_at: {
+    type: Date,
+    required: true
+  }
+
+}, { timestamps: true });
 
 // 🔥 TTL INDEX
-otpSchemaDept.index({ expires_at: 1 }, { expireAfterSeconds: 0 });
+// Automatically delete document when expires_at time passes
+otpSchema.index({ expires_at: 1 }, { expireAfterSeconds: 0 });
 
-export default mongoose.model("OTPVerification", otpSchemaDept);
+
+export default mongoose.model("OTPVerification", otpSchema);
