@@ -11,12 +11,16 @@ const {
   deleteDepartmentAdmin,
   requestAdminPasswordReset,
   verifyAdminResetOTP,
-  resetAdminPassword
+  resetAdminPassword,
+  sendOfficerOTP,
+  verifyOfficerOTP
 } = require("../controllers/departmentAdmin.controller");
 
 const router = express.Router();
 
 router.post("/register", registerDepartmentAdmin);
+router.post("/officer/send-otp", sendOfficerOTP);
+router.post("/officer/verify-otp", verifyOfficerOTP);
 router.post("/verify-phone", verifyAdminPhoneOTP);
 router.post("/verify-email", verifyAdminEmailOTP);
 router.post("/login", loginDepartmentAdmin);
