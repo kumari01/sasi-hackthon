@@ -2,10 +2,13 @@ import mongoose from "mongoose";
 
 const otpSchemaDept = new mongoose.Schema(
   {
-    // 🔑 OWNER (USER / ADMIN / ANY ROLE)
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true
+      ref: "DepartmentAdmin"
+    },
+
+    aadhaar: {
+      type: String
     },
 
     otp: {
@@ -17,7 +20,7 @@ const otpSchemaDept = new mongoose.Schema(
 
     otp_type: {
       type: String,
-      enum: ["PHONE", "EMAIL", "RESET"],
+      enum: ["PHONE", "EMAIL", "RESET", "AADHAAR", "OFFICER"],
       required: true
     },
 
